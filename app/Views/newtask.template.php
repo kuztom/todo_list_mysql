@@ -10,7 +10,7 @@ $today = $year . '-' . $month . '-' . $day;
 
 <body>
 <br>
-<h1 style="text-align: center;color:steelblue;font-size:40px;">To-Do List</h1>
+<h1 style="text-align: center;color:steelblue;font-size:40px;">Add new task to To-Do list</h1>
 
 <div class="container-sm">
     <div style="text-align: center">
