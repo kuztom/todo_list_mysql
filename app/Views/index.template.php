@@ -1,8 +1,9 @@
 <?php require_once 'app/Views/Partials/header.template.php'; ?>
 
-<body>
 <br>
-<h1 style="text-align: center;color:steelblue;font-size:40px;"><?php echo $_SESSION['username'] ?> To-Do List</h1>
+<h1 style="text-align: center;color:steelblue;font-size:40px;">
+    <?php if (isset($_SESSION['userId'])) echo $_SESSION['userId'] ?>
+    To-Do List</h1>
 
 <div class="container-sm">
     <div style="text-align: center">
@@ -10,7 +11,7 @@
             <a href="/newTask">
                 <button type="button">New Task</button>
             </a>
-            <input type="submit" name="logout" value="Logout"><br><br>
+
         </form>
 
     </div>
@@ -29,6 +30,6 @@
             </tbody>
         </table>
     </div>
-
+</div>
 </body>
 </html>

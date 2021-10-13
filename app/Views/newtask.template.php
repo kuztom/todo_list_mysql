@@ -8,7 +8,6 @@ $year = date('Y');
 $today = $year . '-' . $month . '-' . $day;
 ?>
 
-<body>
 <br>
 <h1 style="text-align: center;color:steelblue;font-size:40px;">Add new task to To-Do list</h1>
 
@@ -26,6 +25,6 @@ $today = $year . '-' . $month . '-' . $day;
 
         </form>
     </div>
-
+</div>
 </body>
 </html>

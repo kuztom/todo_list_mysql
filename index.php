@@ -1,6 +1,6 @@
 <?php
-session_name('login_session');
-session_set_cookie_params(0, '/', '.localhost');
+//session_name('login_session');
+//session_set_cookie_params(0, '/', '.localhost');
 session_start();
 require_once 'vendor/autoload.php';
 
@@ -13,12 +13,13 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('POST', '/task/{id}', 'TasksController@delete');
 
     //users
-    $r->addRoute('GET', '/register', 'UsersController@register');
-    $r->addRoute('POST', '/register', 'UsersController@save');
+    $r->addRoute('GET', '/register', 'UsersController@registerForm');
+    $r->addRoute('POST', '/register', 'UsersController@register');
     $r->addRoute('GET', '/error', 'UsersController@error');
-    $r->addRoute('GET', '/login', 'UsersController@login');
-    $r->addRoute('POST', '/login', 'UsersController@logout');
-    $r->addRoute('POST', '/account', 'UsersController@account');
+    $r->addRoute('GET', '/login', 'UsersController@loginForm');
+    $r->addRoute('POST', '/login', 'UsersController@login');
+    $r->addRoute('POST', '/logout', 'UsersController@logout');
+
 
 });
 

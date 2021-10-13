@@ -7,6 +7,5 @@ use App\Models\User;
 interface UsersRepository
 {
     public function add(User $user): void;
-
-    public function find(): void;
+    public function find(string $username): ?User;
 }

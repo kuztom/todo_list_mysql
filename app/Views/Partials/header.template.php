@@ -7,3 +7,12 @@
           crossorigin="anonymous">
     <title>To-Do List</title>
 </head>
+<body>
+<br />
+<div style="text-align: center">
+<?php if (isset($_SESSION['userId'])): ?>
+<form method="post" action="/logout">
+    <input type="submit" name="logout" value="Logout"><br><br>
+</form>
+<?php endif; ?>
+</div>

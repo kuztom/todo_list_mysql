@@ -1,6 +1,5 @@
 <?php require_once 'app/Views/Partials/header.template.php'; ?>
 
-<body>
 <br>
 <h1 style="text-align: center;color:steelblue;font-size:40px;">Your Task</h1>
 
@@ -18,6 +17,6 @@
             <br><br>
         </form>
     </div>
-
+</div>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php require_once 'app/Views/Partials/header.template.php'; ?>
 
-<body>
 <br>
 <h1 style="text-align: center;color:steelblue;font-size:40px;">Fill the form to register</h1>
 
@@ -24,6 +23,6 @@
 
         </form>
     </div>
-
+</div>
 </body>
 </html>

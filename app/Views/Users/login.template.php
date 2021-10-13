@@ -1,6 +1,5 @@
 <?php require_once 'app/Views/Partials/header.template.php'; ?>
 
-<body>
 <br>
 <h1 style="text-align: center;color:steelblue;font-size:40px;">Your To-Do list</h1>
 
@@ -8,7 +7,7 @@
 
 <div class="container-sm">
     <div style="text-align: center">
-        <form method="post" action="/account">
+        <form method="post" action="/login">
             <label for="username">Username: </label>
             <input type="text" id="username" name="username" required><br><br>
             <label for="pwd">Password: </label>
@@ -21,6 +20,7 @@
 
         </form>
     </div>
+</div>
 
 </body>
 </html>

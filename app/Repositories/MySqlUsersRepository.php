@@ -16,12 +16,12 @@ class MySqlUsersRepository implements UsersRepository
     {
         $host = DB_HOST;
         $db = DB_DATABASE;
-        $user = DB_USERNAME;
+        $db_user = DB_USERNAME;
         $pass = DB_PASSWORD;
 
         $dsn = "mysql:host=$host;dbname=$db;charset=UTF8";
         try {
-            $this->connection = new \PDO($dsn, $user, $pass);
+            $this->connection = new \PDO($dsn, $db_user, $pass);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
@@ -35,27 +35,27 @@ class MySqlUsersRepository implements UsersRepository
             $user->getId(),
             $user->getUsername(),
             $user->getEmail(),
-            hash('sha512', $user->getPassword())
+            $user->getPassword()
         ]);
     }
 
-    public function find(): void
+    public function find(string $username): ?User
     {
         $sql = "SELECT * FROM users WHERE username = ?";
         $statement = $this->connection->prepare($sql);
-        $statement->execute([$_POST['username']]);
+        $statement->execute([$username]);
 
         if ($statement->rowCount() !== 1) header('Location: /login');
 
-        $inputPwd = hash('sha512', $_POST['pwd']);
-        $hash = $statement->fetchColumn(3);
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($inputPwd === $hash) {
-            $_SESSION['username'] = $_POST['username'];
-            $_SESSION['email'] = "email";
-            require_once 'app/Views/Users/account.template.php';
-        } else {
-            header('Location: /login');
-        }
+        if (empty($user)) return null;
+
+        return new User(
+            $user['id'],
+            $user['username'],
+            $user['email'],
+            $user['password']
+        );
     }
 }
