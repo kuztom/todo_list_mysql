@@ -2,7 +2,7 @@
 
 <br>
 <h1 style="text-align: center;color:steelblue;font-size:40px;">
-    <?php if (isset($_SESSION['userId'])) echo $_SESSION['userId'] ?>
+    <?php if (isset($_SESSION['username'])) echo $_SESSION['username'] ?>
     To-Do List</h1>
 
 <div class="container-sm">

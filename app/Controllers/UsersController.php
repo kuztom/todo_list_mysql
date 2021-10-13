@@ -23,6 +23,7 @@ class UsersController
         if ($user !== null && password_verify($_POST['pwd'], $user->getPassword()))
         {
             $_SESSION['userId'] = $user->getId();
+            $_SESSION['username'] = $user->getUsername();
             header('Location: /');
 
         } else {

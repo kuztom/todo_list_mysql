@@ -45,8 +45,6 @@ class MySqlUsersRepository implements UsersRepository
         $statement = $this->connection->prepare($sql);
         $statement->execute([$username]);
 
-        if ($statement->rowCount() !== 1) header('Location: /login');
-
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (empty($user)) return null;
