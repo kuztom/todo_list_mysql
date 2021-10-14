@@ -1,4 +1,4 @@
-<?php require_once 'app/Views/Partials/header.template.php'; ?>
+<?php require_once 'app/Views/app.twig'; ?>
 
 <br>
 <h1 style="text-align: center;color:steelblue;font-size:40px;">Your To-Do list</h1>

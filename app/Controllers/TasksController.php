@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Repositories\CsvTasksRepository;
 use App\Repositories\MySqlTasksRepository;
 use App\Repositories\TasksRepository;
+use App\ViewRender;
 use Ramsey\Uuid\Uuid;
 
 class TasksController
@@ -17,11 +18,14 @@ class TasksController
         $this->tasksRepository = new MySqlTasksRepository();
     }
 
-    public function index()
+    public function index(): ViewRender
     {
         $tasks = $this->tasksRepository->getAll();
 
-        require_once 'app/Views/index.template.php';
+        return new ViewRender('index.twig', [
+            'tasks' => $tasks
+        ]);
+
     }
 
     public function open(array $vars)
@@ -34,12 +38,15 @@ class TasksController
 
         if ($task === null) header('Location: /');
 
-        require_once 'app/Views/task.template.php';
+        return new ViewRender('task.twig', [
+            'task' => $task
+        ]);
     }
 
     public function new()
     {
-        require_once 'app/Views/newtask.template.php';
+
+        return new ViewRender('newtask.twig');
     }
 
     public function save()

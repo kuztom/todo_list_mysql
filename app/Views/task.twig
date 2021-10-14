@@ -1,5 +1,5 @@
-<?php require_once 'app/Views/Partials/header.template.php'; ?>
-
+{% extends "app.twig" %}
+{% block content %}
 <br>
 <h1 style="text-align: center;color:steelblue;font-size:40px;">Your Task</h1>
 
@@ -7,10 +7,10 @@
 <div class="container-sm">
     <div style="text-align: center">
         <a href="/">Back</a><br>
-        <h1 style="text-align: center;color:black;font-size:30px;"><?php echo $task->getTitle() ?><br>
-            Planned to complete on <?php echo $task->getDate() ?>
+        <h1 style="text-align: center;color:black;font-size:30px;">{{ task.title }}<br>
+            Planned to complete on {{ task.date }}
         </h1>
-        <small>(ID:<?php echo $task->getId() ?>)</small>
+        <small>(ID:{{ task.id }})</small>
         <form method="post" action="/task/<?php echo $task->getId() ?>">
             <button type="submit" onclick="return confirm('This will erase task from list. Proceed?')">Complete task
             </button>
@@ -18,5 +18,4 @@
         </form>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

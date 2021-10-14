@@ -1,6 +1,9 @@
 <?php
-//session_name('login_session');
-//session_set_cookie_params(0, '/', '.localhost');
+
+use App\ViewRender;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 session_start();
 require_once 'vendor/autoload.php';
 
@@ -39,6 +42,10 @@ if (false !== $pos = strpos($uri, '?')) {
 $uri = rawurldecode($uri);
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+
+$loader = new FilesystemLoader('app/Views');
+$templateEngine = new Environment($loader, []);
+
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found
@@ -58,6 +65,12 @@ switch ($routeInfo[0]) {
 
         $controller = 'App\Controllers\\' . $controller;
         $controller = new $controller();
-        $controller->$method($vars);
+        $response = $controller->$method($vars);
+
+        if ($response instanceof ViewRender)
+        {
+            echo $templateEngine->render($response->getTemplate(), $response->getVars());
+        }
+
         break;
 }
